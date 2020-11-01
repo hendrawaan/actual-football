@@ -1,0 +1,31 @@
+.card-content {
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #393e46;
+    overflow: hidden;
+}
+
+.title-team {
+    text-align: center;
+}
+
+.card-content p,
+.card-content a {
+    font-size: 10px;
+}
+
+.card-content .card-title {
+    font-size: 16px;
+}
+
+.card-image a {
+    background-color: #929aab;
+}
+
+.card-image img {
+    padding: 5px;
+    max-width: 200px;
+    max-height: 200px;
+}

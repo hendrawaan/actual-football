@@ -1,0 +1,14 @@
+{
+    "name": "Actual Football",
+    "short_name": "AF News",
+    "description": "Berita bola dalam genggaman",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#393e46",
+    "theme_color": "#2196F3",
+    "icons": [{
+        "src": "/assets/logo_size_192x192.jpg",
+        "sizes": "192x192",
+        "type": "image/png"
+    }]
+}

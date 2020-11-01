@@ -1,0 +1,136 @@
+.detail-crest {
+    margin-top: 10px;
+}
+
+.detail-overview {
+    padding: 0;
+    margin: 0;
+}
+
+.detail-overview h2 {
+    margin-bottom: 2px;
+}
+
+.detail-overview i {
+    color: #393e46;
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+.detail-overview a {
+    color: #393e46;
+    text-decoration: underline;
+}
+
+#body-detail {
+    background-color: #eeeeee;
+}
+
+.detail-profile {
+    background-color: #f7f7f7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-content h6 {
+    text-align: left;
+}
+
+.btn-small {
+    margin: 4px;
+    -webkit-animation: slide-in-bottom 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.detail-btn-compe a {
+    color: #f7f7f7;
+    text-decoration: none;
+}
+
+.detail-profile-content {
+    align-items: flex-start;
+    background-color: #f7f7f7;
+    border-color: #393e46;
+    padding: 0;
+}
+
+.detail-profile-content p {
+    font-size: 14px;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.detail-profile-content i {
+    color: #393e46;
+    font-size: 14px;
+    margin-right: 3px;
+}
+
+.detail-card-squad {
+    background-color: #f7f7f7;
+}
+
+.detail-tab-squad {
+    padding: 0;
+}
+
+.detail-card-squad .card-content {
+    padding: 5px;
+    background-color: #f7f7f7;
+}
+
+.detail-card-squad h5 {
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.detail-card-header {
+    color: #f7f7f7;
+    background-color: #393e46;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+/* tabs */
+
+.tabs {
+    background-color: transparent;
+}
+
+.tabs .tab a {
+    color: #393e46;
+    background-color: #f7f7f7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+/*Black color to the text*/
+
+.tabs .tab a:hover {
+    background-color: #393e46;
+    color: #f7f7f7;
+}
+
+
+/*Text color on hover*/
+
+.tabs .tab a.active {
+    background-color: #393e46;
+    color: #f7f7f7;
+}
+
+.tabs .tab a:focus.active {
+    color: #393e46;
+    /*Custom Text Color While Active*/
+    background-color: #eeeeee;
+    /*Custom Background Color While Active*/
+}
+
+
+/*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color: #393e46;
+}

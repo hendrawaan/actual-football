@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'SIMPLIFICA';
+    src: url('/assets/SIMPLIFICA\ Typeface.ttf') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/assets/SIMPLIFICA\ Typeface.ttf') format('truetype');
+    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
+.web-title {
+    position: relative;
+    text-align: center;
+    font-family: 'SIMPLIFICA';
+    text-shadow: 2px 2px 8px #fdd835;
+}
+
+.web-title span {
+    color: #fdd835;
+    text-shadow: 2px 2px 8px black;
+}
+
+.burger {
+    border-width: 1px;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+}
+
+.parallax-container {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+}
+
+.responsive-img {
+    opacity: 1;
+}
+
+.anime-list-title {
+    position: relative;
+    font-family: 'SIMPLIFICA';
+    color: #dfdfdf;
+}
+
+
+/*Card*/
+
+.card,
+.card-panel {
+    padding: 0px;
+    -webkit-animation: slide-in-bottom 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card .card-image {
+    max-height: fit-content;
+}
+
+.card-image img:hover {
+    transition-duration: .3s;
+    transform: scale(1.25);
+    border-radius: 0;
+}
+
+.card .card-image .card-title {
+    font-size: medium;
+    font-weight: bolder;
+    padding: 2px;
+}
+
+.card .card-content {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.card .card-action {
+    background-color: inherit;
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    position: relative;
+    padding: 3px 2px;
+    padding-left: 16px;
+}
+
+.card .card-action a {
+    font-size: 12px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    color: #ffab40;
+    margin-right: 0px;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+    text-transform: uppercase;
+}
+
+.card-detail {
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-type,
+.card-score {
+    border-right: 1px solid #dfdfdf;
+}
+
+.card-details {
+    font-size: 12px;
+    text-align: center;
+}
+
+.crest-team {
+    padding: 0;
+    margin: 0;
+}
