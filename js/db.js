@@ -11,7 +11,7 @@ function saveForLater(team) {
             var tx = db.transaction("teams", "readwrite");
             var store = tx.objectStore("teams");
             console.log(team);
-            store.put(team.result);
+            store.add(team);
             return tx.complete;
         })
         .then(function() {
@@ -42,6 +42,7 @@ function getById(id) {
                 return store.get(id);
             })
             .then(function(team) {
+                console.log(team)
                 resolve(team);
             });
     });

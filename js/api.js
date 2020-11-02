@@ -1,5 +1,25 @@
 var base_url = "https://api.football-data.org/v2/";
 let api_token = '9aaf7b8ec81e4ecf8d3292f6594b58b3'
+const showLoader = () => {
+    const html = `<div class="preloader-wrapper medium active">
+                <div class="spinner-layer spinner-green-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                </div>`
+    let doc = document.getElementById('loader');
+    doc.innerHTML = html;
+}
+
+const hideLoader = () => {
+    let doc = document.getElementById('loader');
+    doc.innerHTML = '';
+}
 
 function status(response) {
     if (response.status !== 200) {
@@ -213,7 +233,7 @@ function getTeamsById() {
     return new Promise(function(resolve, reject) {
         var urlParams = new URLSearchParams(window.location.search);
         var idParam = urlParams.get("id");
-        console.log(idParam)
+
         if ("caches" in window) {
             caches.match(base_url + "teams/" + idParam, {
                 method: 'GET',
@@ -424,11 +444,13 @@ function getTeamsById() {
 }
 
 function getSavedTeam() {
+    var urlParams = new URLSearchParams(window.location.search);
+
     getAll().then(function(data) {
         console.log(data);
         // Menyusun komponen card artikel secara dinamis
         var teamsHTML = "";
-        data.teams.forEach(function(team) {
+        data.forEach(function(team) {
             teamsHTML += `
                 <div  class="col s12 m2">
                 <div class="card team-card">
@@ -439,14 +461,14 @@ function getSavedTeam() {
                     <div class="card-content">
                         <span class="card-title truncate">${team.shortName}</span>
                         <p class="flow-text truncate">${team.venue}</p>
-                        <a href="./detailteam.html?id=${team.id}">Club Profile <i class="material-icons" style="color: black; font-size: 12px;">arrow_forward</i></a>
+                        <a href="./detailteam.html?id=${team.id}&saved=true">Club Profile <i class="material-icons" style="color: black; font-size: 12px;">arrow_forward</i></a>
                     </div>
                 </div>
             </div>
         `;
         });
         // Sisipkan komponen card ke dalam elemen dengan id #body-content
-        document.getElementById("body-content").innerHTML = articlesHTML;
+        document.getElementById("teams").innerHTML = teamsHTML;
     });
 }
 
@@ -458,7 +480,8 @@ function getSavedTeamById() {
         let btnHTML = ``
         let tableHTML = ``
         let position = ''
-        let squadFilter = data.squad.filter(function(elem) { return elem.role === "PLAYER"; })
+        console.log(data)
+        let squadFilter = data.filter(function(elem) { return elem.role === "PLAYER"; })
         squadFilter.forEach(function(squad) {
             if (squad.position === "Goalkeeper") {
                 position = "GK"
@@ -541,6 +564,7 @@ function getSavedTeamById() {
         </div>
     </div>
       `;
-        document.getElementById("body-content").innerHTML = teamHTML;
+        document.getElementById("body-detail").innerHTML = teamHTML;
     });
+
 }

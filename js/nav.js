@@ -35,7 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     var newScript = document.createElement("script");
                     newScript.text = "tabsInit()";
                     content.appendChild(newScript);
-                    getTeamsById()
+                    var isFromSaved = urlParams.get("saved");
+                    console.log(isFromSaved)
+                    if (isFromSaved) {
+                        getSavedTeamById()
+                    } else { getTeamsById() }
+
 
                 } else {
                     if (this.status == 200) {
@@ -58,8 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
                                 getTeams(this.value)
                             };
                         } else if (page === 'saved') {
-                            var urlParams = new URLSearchParams(window.location.search);
-                            var isFromSaved = urlParams.get("saved");
 
                             getSavedTeam()
                         }
