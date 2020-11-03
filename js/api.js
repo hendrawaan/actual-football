@@ -1,24 +1,19 @@
 var base_url = "https://api.football-data.org/v2/";
 let api_token = '9aaf7b8ec81e4ecf8d3292f6594b58b3'
-const showLoader = () => {
-    const html = `<div class="preloader-wrapper medium active">
-                <div class="spinner-layer spinner-green-only">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                  </div><div class="gap-patch">
-                    <div class="circle"></div>
-                  </div><div class="circle-clipper right">
-                    <div class="circle"></div>
-                  </div>
-                </div>
-                </div>`
-    let doc = document.getElementById('loader');
-    doc.innerHTML = html;
-}
 
-const hideLoader = () => {
-    let doc = document.getElementById('loader');
-    doc.innerHTML = '';
+
+function showNotifikasiSederhana() {
+    const title = 'Notifikasi Sederhana';
+    const options = {
+        'body': 'Ini adalah konten notifikasi. \nBisa menggunakan baris baru.',
+    }
+    if (Notification.permission === 'granted') {
+        navigator.serviceWorker.ready.then(function(registration) {
+            registration.showNotification(title, options);
+        });
+    } else {
+        console.error('FItur notifikasi tidak diijinkan.');
+    }
 }
 
 function status(response) {
@@ -157,6 +152,7 @@ function getStandings(value) {
             document.getElementById("standing-league").innerHTML = teamsHTML;
         })
         .catch(error);
+
 }
 // menampilkan value tim dengan memasukkan id liga
 function getTeams(value) {
@@ -212,7 +208,7 @@ function getTeams(value) {
                 <div  class="col s12 m2">
                 <div class="card team-card">
                     <div class="card-image">
-                        <img class="responsive-img" src="${team.crestUrl}">
+                        <img class="responsive-img" src="${team.crestUrl}"/>
                     </div>
                     <div class="card-content">
                         <span class="card-title truncate">${team.shortName}</span>
@@ -226,10 +222,10 @@ function getTeams(value) {
             document.getElementById("card-team").innerHTML = teamsHTML;
         })
         .catch(error);
+
 }
 // Menampilkan data tim berdasarkan id
 function getTeamsById() {
-
     return new Promise(function(resolve, reject) {
         var urlParams = new URLSearchParams(window.location.search);
         var idParam = urlParams.get("id");
@@ -441,9 +437,11 @@ function getTeamsById() {
                 resolve(data);
             });
     });
+
 }
 
 function getSavedTeam() {
+
     var urlParams = new URLSearchParams(window.location.search);
 
     getAll().then(function(data) {
@@ -469,6 +467,7 @@ function getSavedTeam() {
         });
         // Sisipkan komponen card ke dalam elemen dengan id #body-content
         document.getElementById("teams").innerHTML = teamsHTML;
+
     });
 }
 
@@ -481,7 +480,7 @@ function getSavedTeamById() {
         let tableHTML = ``
         let position = ''
         console.log(data)
-        let squadFilter = data.filter(function(elem) { return elem.role === "PLAYER"; })
+        let squadFilter = data.squad.filter(function(elem) { return elem.role === "PLAYER"; })
         squadFilter.forEach(function(squad) {
             if (squad.position === "Goalkeeper") {
                 position = "GK"
@@ -565,6 +564,7 @@ function getSavedTeamById() {
     </div>
       `;
         document.getElementById("body-detail").innerHTML = teamHTML;
+
     });
 
 }

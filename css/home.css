@@ -1,16 +1,3 @@
-@font-face {
-    font-family: 'SIMPLIFICA';
-    src: url('/assets/SIMPLIFICA\ Typeface.ttf') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-    url('/assets/SIMPLIFICA\ Typeface.ttf') format('truetype');
-    /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-}
-
-.web-title {
-    position: relative;
-    text-align: center;
-    font-family: 'SIMPLIFICA';
-    text-shadow: 2px 2px 8px #fdd835;
-}
 
 .web-title span {
     color: #fdd835;

@@ -30,23 +30,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 var content = document.querySelector("#body-content");
                 var urlParams = new URLSearchParams(window.location.search);
                 var idParam = urlParams.get("id");
+
                 if (idParam !== null) {
                     content = document.querySelector("#body-detail");
                     var newScript = document.createElement("script");
                     newScript.text = "tabsInit()";
                     content.appendChild(newScript);
                     var isFromSaved = urlParams.get("saved");
-                    console.log(isFromSaved)
+
                     if (isFromSaved) {
                         getSavedTeamById()
                     } else { getTeamsById() }
-
-
                 } else {
                     if (this.status == 200) {
 
                         content.innerHTML = xhttp.responseText;
                         if (page === 'home') {
+
                             var newScript = document.createElement("script");
                             newScript.text = "loadSelect()";
                             content.appendChild(newScript);
@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 getStandings(this.value)
                             };
                         } else if (page === 'teams') {
+
                             var newScript = document.createElement("script");
                             newScript.text = "loadSelect()";
                             content.appendChild(newScript);
