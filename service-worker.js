@@ -18,6 +18,7 @@ var urlsToCache = [
     "/assets/material_icons/MaterialIcons-Regular.woff",
     "/assets/material_icons/MaterialIcons-Regular.woff2",
     "/sw-register.js",
+    "/push.js",
     "/manifest.json",
     "/nav.html",
     "/sidenav.html",
@@ -37,7 +38,7 @@ var urlsToCache = [
     "/js/api.js",
     "/js/db.js",
     "/js/idb.js",
-    "/js/push.js"
+
 ];
 
 self.addEventListener("install", function(event) {
