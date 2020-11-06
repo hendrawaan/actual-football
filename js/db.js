@@ -19,6 +19,20 @@ function saveForLater(team) {
         });
 }
 
+function deleteTeam(team) {
+    dbPromised
+        .then(function(db) {
+            var tx = db.transaction("teams", "readwrite");
+            var store = tx.objectStore("teams");
+            console.log(team);
+            store.delete(team);
+            return tx.complete;
+        })
+        .then(function() {
+            console.log("Artikel berhasil di simpan.");
+        });
+}
+
 function getAll() {
     return new Promise(function(resolve, reject) {
         dbPromised

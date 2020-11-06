@@ -33,6 +33,14 @@ function saveTeam() {
     });
 };
 
+function deleteTeamHandler() {
+    console.log("Tombol FAB di klik.");
+    var item = getTeamsById();
+    item.then(function(teams) {
+        deleteTeam(teams.id);
+    });
+};
+
 function json(response) {
     return response.json();
 }
@@ -77,10 +85,11 @@ function getStandings(value) {
                     stands.forEach(function(table) {
 
                         table.table.forEach(function(team) {
+                            let url = team.team.crestUrl.replace(/^http:\/\//i, 'https://');
                             teamsHTML += `
                             <tr>
                             <td>${team.position}</td>
-                            <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${team.team.crestUrl}" /></td>
+                            <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${url}" /></td>
                             <td>${team.team.name}</td>
                             <td>${team.playedGames}</td>
                             <td>${team.won}</td>
@@ -131,10 +140,11 @@ function getStandings(value) {
             stands.forEach(function(table) {
 
                 table.table.forEach(function(team) {
+                    let url = team.team.crestUrl.replace(/^http:\/\//i, 'https://');
                     teamsHTML += `
                     <tr>
                     <td>${team.position}</td>
-                    <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${team.team.crestUrl}" /></td>
+                    <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${url}" /></td>
                     <td>${team.team.name}</td>
                     <td>${team.playedGames}</td>
                     <td>${team.won}</td>
@@ -170,12 +180,12 @@ function getTeams(value) {
                 response.json().then(function(data) {
                     var teamsHTML = "";
                     data.teams.forEach(function(team) {
-
+                        let url = team.crestUrl.replace(/^http:\/\//i, 'https://');
                         teamsHTML += `
                         <div  class="col s12 m2">
                         <div class="card team-card">
                             <div class="card-image">
-                                <img class="responsive-img" src="${team.crestUrl}">
+                                <img class="responsive-img" src="${url}">
                             </div>
                             <div class="card-content">
                                 <span class="card-title truncate">${team.shortName}</span>
@@ -204,11 +214,12 @@ function getTeams(value) {
             var teamsHTML = "";
             data.teams.forEach(function(team) {
                 console.log(team)
+                let url = team.crestUrl.replace(/^http:\/\//i, 'https://');
                 teamsHTML += `
                 <div  class="col s12 m2">
                 <div class="card team-card">
                     <div class="card-image">
-                        <img class="responsive-img" src="${team.crestUrl}"/>
+                        <img class="responsive-img" src="${url}"/>
                     </div>
                     <div class="card-content">
                         <span class="card-title truncate">${team.shortName}</span>
@@ -262,12 +273,12 @@ function getTeamsById() {
                         data.activeCompetitions.forEach(function(compe) {
                             btnHTML += `<a class="waves-effect waves-light btn-small ${getRandomColor()} darken-1">${compe.name}</a>`
                         })
-
+                        let url = data.crestUrl.replace(/^http:\/\//i, 'https://');
                         let teamHTML = `
                         <div class="row">
                         <div class="col s12">
                             <div class="detail-crest col s12 m3">
-                                <img class="responsive-img" src="${data.crestUrl}" />
+                                <img class="responsive-img" src="${url}" />
                             </div>
                             <div class="detail-overview col s12 m8">
                                 <h2>${data.name}</h2>
@@ -367,12 +378,12 @@ function getTeamsById() {
                 data.activeCompetitions.forEach(function(compe) {
                     btnHTML += `<a class="waves-effect waves-light btn-small ${getRandomColor()} darken-1">${compe.name}</a>`
                 })
-
+                let url = data.crestUrl.replace(/^http:\/\//i, 'https://');
                 let teamHTML = `
                 <div class="row">
                 <div class="col s12">
                     <div class="detail-crest col s12 m3">
-                        <img class="responsive-img" src="${data.crestUrl}" />
+                        <img class="responsive-img" src="${url}" />
                     </div>
                     <div class="detail-overview col s12 m8">
                         <h2>${data.name}</h2>
@@ -442,18 +453,18 @@ function getTeamsById() {
 
 function getSavedTeam() {
 
-    var urlParams = new URLSearchParams(window.location.search);
 
     getAll().then(function(data) {
         console.log(data);
         // Menyusun komponen card artikel secara dinamis
         var teamsHTML = "";
         data.forEach(function(team) {
+            let url = team.crestUrl.replace(/^http:\/\//i, 'https://');
             teamsHTML += `
                 <div  class="col s12 m2">
                 <div class="card team-card">
                     <div class="card-image">
-                        <img class="responsive-img" src="${team.crestUrl}">
+                        <img class="responsive-img" src="${url}">
     
                     </div>
                     <div class="card-content">
@@ -479,6 +490,7 @@ function getSavedTeamById() {
         let btnHTML = ``
         let tableHTML = ``
         let position = ''
+        let url = data.crestUrl.replace(/^http:\/\//i, 'https://');
         console.log(data)
         let squadFilter = data.squad.filter(function(elem) { return elem.role === "PLAYER"; })
         squadFilter.forEach(function(squad) {
@@ -505,7 +517,7 @@ function getSavedTeamById() {
         <div class="row">
         <div class="col s12">
             <div class="detail-crest col s12 m3">
-                <img class="responsive-img" src="${data.crestUrl}" />
+                <img class="responsive-img" src="${url}" />
             </div>
             <div class="detail-overview col s12 m8">
                 <h2>${data.name}</h2>
@@ -514,6 +526,9 @@ function getSavedTeamById() {
                 <h6 id="detail-compe">Competitions: </h6>
                 <div class="col s12 detail-btn-compe">
                     ${btnHTML}
+                </div>
+                <div class="col s12 detail-btn-compe">
+                                 <a href="./index.html" class="waves-effect waves-light btn-small red darken-1" onclick="deleteTeamHandler()"><i class="material-icons right" style="color:#f7f7f7;">delete</i>Delete</a>
                 </div>
             </div>
         </div>
