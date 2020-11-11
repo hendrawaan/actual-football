@@ -38,6 +38,7 @@ function deleteTeamHandler() {
     var item = getTeamsById();
     item.then(function(teams) {
         deleteTeam(teams.id);
+        window.location.replace("./index.html");
     });
 };
 
@@ -89,7 +90,7 @@ function getStandings(value) {
                             teamsHTML += `
                             <tr>
                             <td>${team.position}</td>
-                            <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${url}" /></td>
+                            <td class="crest-team"><img alt="soccer-team" width="18px" height="18px" class="responsive-img" src="${url}" /></td>
                             <td>${team.team.name}</td>
                             <td>${team.playedGames}</td>
                             <td>${team.won}</td>
@@ -144,7 +145,7 @@ function getStandings(value) {
                     teamsHTML += `
                     <tr>
                     <td>${team.position}</td>
-                    <td class="crest-team"><img width="18px" height="18px" class="responsive-img" src="${url}" /></td>
+                    <td class="crest-team"><img alt="soccer-team" width="18px" height="18px" class="responsive-img" src="${url}" /></td>
                     <td>${team.team.name}</td>
                     <td>${team.playedGames}</td>
                     <td>${team.won}</td>
@@ -185,7 +186,7 @@ function getTeams(value) {
                         <div  class="col s12 m2">
                         <div class="card team-card">
                             <div class="card-image">
-                                <img class="responsive-img" src="${url}">
+                                <img alt="soccer-team" class="responsive-img" src="${url}">
                             </div>
                             <div class="card-content">
                                 <span class="card-title truncate">${team.shortName}</span>
@@ -219,7 +220,7 @@ function getTeams(value) {
                 <div  class="col s12 m2">
                 <div class="card team-card">
                     <div class="card-image">
-                        <img class="responsive-img" src="${url}"/>
+                        <img alt="soccer-team" class="responsive-img" src="${url}"/>
                     </div>
                     <div class="card-content">
                         <span class="card-title truncate">${team.shortName}</span>
@@ -278,7 +279,7 @@ function getTeamsById() {
                         <div class="row">
                         <div class="col s12">
                             <div class="detail-crest col s12 m3">
-                                <img class="responsive-img" src="${url}" />
+                                <img alt="soccer-team" class="responsive-img" src="${url}" />
                             </div>
                             <div class="detail-overview col s12 m8">
                                 <h2>${data.name}</h2>
@@ -383,7 +384,7 @@ function getTeamsById() {
                 <div class="row">
                 <div class="col s12">
                     <div class="detail-crest col s12 m3">
-                        <img class="responsive-img" src="${url}" />
+                        <img alt="soccer-team" class="responsive-img" src="${url}" />
                     </div>
                     <div class="detail-overview col s12 m8">
                         <h2>${data.name}</h2>
@@ -464,7 +465,7 @@ function getSavedTeam() {
                 <div  class="col s12 m2">
                 <div class="card team-card">
                     <div class="card-image">
-                        <img class="responsive-img" src="${url}">
+                        <img alt="soccer-team" class="responsive-img" src="${url}">
     
                     </div>
                     <div class="card-content">
@@ -517,7 +518,7 @@ function getSavedTeamById() {
         <div class="row">
         <div class="col s12">
             <div class="detail-crest col s12 m3">
-                <img class="responsive-img" src="${url}" />
+                <img alt="soccer-team" class="responsive-img" src="${url}" />
             </div>
             <div class="detail-overview col s12 m8">
                 <h2>${data.name}</h2>
@@ -528,7 +529,7 @@ function getSavedTeamById() {
                     ${btnHTML}
                 </div>
                 <div class="col s12 detail-btn-compe">
-                                 <a href="./index.html" class="waves-effect waves-light btn-small red darken-1" onclick="deleteTeamHandler()"><i class="material-icons right" style="color:#f7f7f7;">delete</i>Delete</a>
+                                 <a  class="waves-effect waves-light btn-small red darken-1" onclick="deleteTeamHandler()"><i class="material-icons right" style="color:#f7f7f7;">delete</i>Delete</a>
                 </div>
             </div>
         </div>

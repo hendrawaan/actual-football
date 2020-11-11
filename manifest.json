@@ -14,7 +14,8 @@
     }, {
         "src": "/assets/logo_192x192_invert.png",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/png",
+        "purpose": "any maskable"
     }]
 
 }
