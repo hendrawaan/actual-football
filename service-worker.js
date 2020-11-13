@@ -4,84 +4,80 @@ if (workbox)
 else
     console.log(`Workbox gagal dimuat`);
 workbox.precaching.precacheAndRoute([
-    "/",
-    "/assets/logo_size_152x152.jpg",
-    "/assets/logo_size_invert_152x152.jpg",
-    "/assets/logo_size_192x192.jpg",
-    "/assets/logo_size_invert_192x192.jpg",
-    "/assets/logo_size_480x80.jpg",
-    "/assets/logo_size_invert_480x80.jpg",
-    "/assets/logo_192x192_invert.png",
-    "/assets/logo_invert_210x80.png",
-    "/assets/logo_invert_480x80.png",
-    "/assets/logo_512x512_invert.png",
-    "/assets/material_icons/codepoints",
-    "/assets/material_icons/material-icons.css",
-    "/assets/material_icons/MaterialIcons-Regular.eot",
-    "/assets/material_icons/MaterialIcons-Regular.ijmap",
-    "/assets/material_icons/MaterialIcons-Regular.ttf",
-    "/assets/material_icons/MaterialIcons-Regular.woff",
-    "/assets/material_icons/MaterialIcons-Regular.woff2",
-    "/sw-register.js",
-    "/push.js",
-    "/manifest.json",
-    "/nav.html",
-    "/sidenav.html",
-    "/index.html",
-    "/detailteam.html",
-    "/pages/home.html",
-    "/pages/saved.html",
-    "/pages/teams.html",
-    "/css/materialize.css",
-    "/css/materialize.min.css",
-    "/css/home.css",
-    "/css/teams.css",
-    "/css/detail.css",
-    "/js/materialize.min.js",
-    "/js/materialize.js",
-    "/js/nav.js",
-    "/js/api.js",
-    "/js/db.js",
-    "/js/idb.js",
+    { url: "/", revision: 1 },
+    { url: "/assets/logo_size_152x152.jpg", revision: 1 },
+    { url: "/assets/logo_size_invert_152x152.jpg", revision: 1 },
+    { url: "/assets/logo_size_192x192.jpg", revision: 1 },
+    { url: "/assets/logo_size_invert_192x192.jpg", revision: 1 },
+    { url: "/assets/logo_size_480x80.jpg", revision: 1 },
+    { url: "/assets/logo_size_invert_480x80.png", revision: 1 },
+    { url: "/assets/logo_192x192_invert.png", revision: 1 },
+    { url: "/assets/logo_invert_210x80.png", revision: 1 },
+    { url: "/assets/logo_invert_480x80.png", revision: 1 },
+    { url: "/assets/logo_512x512_invert.png", revision: 1 },
+    { url: "/assets/material_icons/codepoints", revision: 1 },
+    { url: "/assets/material_icons/material-icons.css", revision: 1 },
+    { url: "/assets/material_icons/MaterialIcons-Regular.eot", revision: 1 },
+    { url: "/assets/material_icons/MaterialIcons-Regular.ijmap", revision: 1 },
+    { url: "/assets/material_icons/MaterialIcons-Regular.ttf", revision: 1 },
+    { url: "/assets/material_icons/MaterialIcons-Regular.woff", revision: 1 },
+    { url: "/assets/material_icons/MaterialIcons-Regular.woff2", revision: 1 },
+    { url: "/sw-register.js", revision: 1 },
+    { url: "/push.js", revision: 1 },
+    { url: "/manifest.json", revision: 1 },
+    { url: "/nav.html", revision: 1 },
+    { url: "/sidenav.html", revision: 1 },
+    { url: "/index.html", revision: 1 },
+    { url: "/detailteam.html", revision: 1 },
+    { url: "/pages/home.html", revision: 1 },
+    { url: "/pages/saved.html", revision: 1 },
+    { url: "/pages/teams.html", revision: 1 },
+    { url: "/css/materialize.css", revision: 1 },
+    { url: "/css/materialize.min.css", revision: 1 },
+    { url: "/css/home.css", revision: 1 },
+    { url: "/css/teams.css", revision: 1 },
+    { url: "/css/detail.css", revision: 1 },
+    { url: "/js/materialize.min.js", revision: 1 },
+    { url: "/js/materialize.js", revision: 1 },
+    { url: "/js/nav.js", revision: 1 },
+    { url: "/js/api.js", revision: 1 },
+    { url: "/js/db.js", revision: 1 },
+    { url: "/js/idb.js", revision: 1 },
 ], {
     ignoreUrlParametersMatching: [/.*/],
 });
 
-// workbox.routing.registerRoute(
-//     new RegExp("/assets/"),
-//     /\.(?:png|gif|jpg|jpeg|svg)$/,
-//     workbox.strategies.cacheFirst({
-//         cacheName: 'images',
-//         plugins: [
-//             new workbox.expiration.Plugin({
-//                 maxEntries: 60,
-//                 maxAgeSeconds: 30 * 24 * 60 * 60,
-//             }),
-//         ],
-//     }),
-// );
 workbox.routing.registerRoute(
-    new RegExp("/pages/"),
+    new RegExp('^/assets/'),
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    workbox.strategies.cacheFirst({
+        cacheName: 'images',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 60,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+            }),
+        ],
+    }),
+);
+workbox.routing.registerRoute(
+    new RegExp('^/pages/'),
     workbox.strategies.staleWhileRevalidate({
         cacheName: "pages",
     })
 );
 workbox.routing.registerRoute(
-    new RegExp('/css/'),
+    new RegExp('^/css/'),
     workbox.strategies.cacheFirst({
         cacheName: 'styles'
     })
 );
 
 workbox.routing.registerRoute(
-    /^https:\/\/api\.football-data\.org/,
+    new RegExp('https://api.football-data.org/v2'),
     workbox.strategies.staleWhileRevalidate({
         cacheName: "soccer-api",
-        plugins: [
-            new workbox.expiration.Plugin({
-                maxAgeSeconds: 60 * 30,
-            }),
-        ],
+
     })
 );
 
